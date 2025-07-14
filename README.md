@@ -2,3 +2,5 @@
 
 
 P.S. для запуска локально нужно запустить docker-compose (там лежит ZooKeeper)
+
+Контакты - https://t.me/f4ken0name

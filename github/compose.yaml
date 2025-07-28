@@ -6,9 +6,9 @@ services:
     container_name: github_postgres
     restart: always
     environment:
-      POSTGRES_DB: github_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: {DB_NAME}
+      POSTGRES_USER: {DB_USER}
+      POSTGRES_PASSWORD: {DB_PASSWORD}
     ports:
       - "5555:5432"
     volumes:

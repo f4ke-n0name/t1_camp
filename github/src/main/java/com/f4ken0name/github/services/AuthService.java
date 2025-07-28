@@ -3,6 +3,7 @@ package com.f4ken0name.github.services;
 import com.f4ken0name.github.models.User;
 import com.f4ken0name.github.utils.Role;
 import com.f4ken0name.github.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,6 +17,7 @@ public class AuthService implements UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    @Autowired
     public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -28,7 +30,7 @@ public class AuthService implements UserDetailsService {
     }
 
     @Transactional
-    public User registerUser(String email, String login, String password) {
+    public void registerUser(String email, String login, String password) {
         if (userRepository.existsByEmail(email)) {
             throw new IllegalArgumentException("Email already in use");
         }
@@ -43,7 +45,7 @@ public class AuthService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(password));
         user.setRole(Role.GUEST);
 
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
     private UserDetails buildUserDetails(User user) {

@@ -1,0 +1,3 @@
+com.f4ken0name.github.command.configs.CommandConfiguration
+com.f4ken0name.github.audit.configs.AuditKafkaConfig
+com.f4ken0name.github.audit.configs.AuditConfiguration
